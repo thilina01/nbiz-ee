@@ -3,7 +3,10 @@
     "fields": [
         {
             "fieldName": "cost",
-            "fieldType": "Double"
+            "fieldType": "Double",
+            "fieldValidateRules": [
+                "required"
+            ]
         },
         {
             "fieldName": "discount",
@@ -11,7 +14,10 @@
         },
         {
             "fieldName": "sellingPrice",
-            "fieldType": "Double"
+            "fieldType": "Double",
+            "fieldValidateRules": [
+                "required"
+            ]
         },
         {
             "fieldName": "expiaryDate",
@@ -19,7 +25,10 @@
         },
         {
             "fieldName": "quantity",
-            "fieldType": "Double"
+            "fieldType": "Double",
+            "fieldValidateRules": [
+                "required"
+            ]
         },
         {
             "fieldName": "serial",

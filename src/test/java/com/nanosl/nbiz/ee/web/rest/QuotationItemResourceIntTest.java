@@ -139,6 +139,42 @@ public class QuotationItemResourceIntTest {
 
     @Test
     @Transactional
+    public void checkAmountIsRequired() throws Exception {
+        int databaseSizeBeforeTest = quotationItemRepository.findAll().size();
+        // set the field null
+        quotationItem.setAmount(null);
+
+        // Create the QuotationItem, which fails.
+
+        restQuotationItemMockMvc.perform(post("/api/quotation-items")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(quotationItem)))
+            .andExpect(status().isBadRequest());
+
+        List<QuotationItem> quotationItemList = quotationItemRepository.findAll();
+        assertThat(quotationItemList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
+    public void checkQuantityIsRequired() throws Exception {
+        int databaseSizeBeforeTest = quotationItemRepository.findAll().size();
+        // set the field null
+        quotationItem.setQuantity(null);
+
+        // Create the QuotationItem, which fails.
+
+        restQuotationItemMockMvc.perform(post("/api/quotation-items")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(quotationItem)))
+            .andExpect(status().isBadRequest());
+
+        List<QuotationItem> quotationItemList = quotationItemRepository.findAll();
+        assertThat(quotationItemList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
     public void getAllQuotationItems() throws Exception {
         // Initialize the database
         quotationItemRepository.saveAndFlush(quotationItem);

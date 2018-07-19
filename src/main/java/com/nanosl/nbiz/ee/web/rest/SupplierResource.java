@@ -16,6 +16,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
 
@@ -48,7 +49,7 @@ public class SupplierResource {
      */
     @PostMapping("/suppliers")
     @Timed
-    public ResponseEntity<Supplier> createSupplier(@RequestBody Supplier supplier) throws URISyntaxException {
+    public ResponseEntity<Supplier> createSupplier(@Valid @RequestBody Supplier supplier) throws URISyntaxException {
         log.debug("REST request to save Supplier : {}", supplier);
         if (supplier.getId() != null) {
             throw new BadRequestAlertException("A new supplier cannot already have an ID", ENTITY_NAME, "idexists");
@@ -70,7 +71,7 @@ public class SupplierResource {
      */
     @PutMapping("/suppliers")
     @Timed
-    public ResponseEntity<Supplier> updateSupplier(@RequestBody Supplier supplier) throws URISyntaxException {
+    public ResponseEntity<Supplier> updateSupplier(@Valid @RequestBody Supplier supplier) throws URISyntaxException {
         log.debug("REST request to update Supplier : {}", supplier);
         if (supplier.getId() == null) {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");

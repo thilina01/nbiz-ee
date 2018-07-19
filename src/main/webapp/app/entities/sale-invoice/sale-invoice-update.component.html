@@ -13,13 +13,33 @@
                     <label class="form-control-label" for="field_invoiceDate">Invoice Date</label>
                     <div class="d-flex">
                         <input id="field_invoiceDate" type="datetime-local" class="form-control" name="invoiceDate" [(ngModel)]="invoiceDate"
-                        />
+                        required/>
+                    </div>
+                    <div [hidden]="!(editForm.controls.invoiceDate?.dirty && editForm.controls.invoiceDate?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.invoiceDate?.errors?.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.invoiceDate?.errors?.ZonedDateTimelocal">
+                            This field should be a date and time.
+                        </small>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" for="field_amount">Amount</label>
                     <input type="number" class="form-control" name="amount" id="field_amount"
-                        [(ngModel)]="saleInvoice.amount" />
+                        [(ngModel)]="saleInvoice.amount" required/>
+                    <div [hidden]="!(editForm.controls.amount?.dirty && editForm.controls.amount?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.amount?.errors?.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.amount?.errors?.number">
+                            This field should be a number.
+                        </small>
+                    </div>
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" for="field_paidAmount">Paid Amount</label>

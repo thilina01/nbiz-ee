@@ -23,11 +23,11 @@
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="payment_date" type="datetime">
-                <constraints nullable="true" />
+                <constraints nullable="false" />
             </column>
 
             <column name="amount" type="double">
-                <constraints nullable="true" />
+                <constraints nullable="false" />
             </column>
 
             <column name="sale_invoice_id" type="bigint">

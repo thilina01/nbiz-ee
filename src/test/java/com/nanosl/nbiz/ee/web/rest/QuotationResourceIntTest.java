@@ -146,6 +146,42 @@ public class QuotationResourceIntTest {
 
     @Test
     @Transactional
+    public void checkQuotationDateIsRequired() throws Exception {
+        int databaseSizeBeforeTest = quotationRepository.findAll().size();
+        // set the field null
+        quotation.setQuotationDate(null);
+
+        // Create the Quotation, which fails.
+
+        restQuotationMockMvc.perform(post("/api/quotations")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(quotation)))
+            .andExpect(status().isBadRequest());
+
+        List<Quotation> quotationList = quotationRepository.findAll();
+        assertThat(quotationList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
+    public void checkAmountIsRequired() throws Exception {
+        int databaseSizeBeforeTest = quotationRepository.findAll().size();
+        // set the field null
+        quotation.setAmount(null);
+
+        // Create the Quotation, which fails.
+
+        restQuotationMockMvc.perform(post("/api/quotations")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(quotation)))
+            .andExpect(status().isBadRequest());
+
+        List<Quotation> quotationList = quotationRepository.findAll();
+        assertThat(quotationList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
     public void getAllQuotations() throws Exception {
         // Initialize the database
         quotationRepository.saveAndFlush(quotation);

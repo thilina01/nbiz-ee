@@ -156,6 +156,42 @@ public class SaleInvoiceResourceIntTest {
 
     @Test
     @Transactional
+    public void checkInvoiceDateIsRequired() throws Exception {
+        int databaseSizeBeforeTest = saleInvoiceRepository.findAll().size();
+        // set the field null
+        saleInvoice.setInvoiceDate(null);
+
+        // Create the SaleInvoice, which fails.
+
+        restSaleInvoiceMockMvc.perform(post("/api/sale-invoices")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(saleInvoice)))
+            .andExpect(status().isBadRequest());
+
+        List<SaleInvoice> saleInvoiceList = saleInvoiceRepository.findAll();
+        assertThat(saleInvoiceList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
+    public void checkAmountIsRequired() throws Exception {
+        int databaseSizeBeforeTest = saleInvoiceRepository.findAll().size();
+        // set the field null
+        saleInvoice.setAmount(null);
+
+        // Create the SaleInvoice, which fails.
+
+        restSaleInvoiceMockMvc.perform(post("/api/sale-invoices")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(saleInvoice)))
+            .andExpect(status().isBadRequest());
+
+        List<SaleInvoice> saleInvoiceList = saleInvoiceRepository.findAll();
+        assertThat(saleInvoiceList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
     public void getAllSaleInvoices() throws Exception {
         // Initialize the database
         saleInvoiceRepository.saveAndFlush(saleInvoice);

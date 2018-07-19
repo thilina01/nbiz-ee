@@ -16,6 +16,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
 
@@ -48,7 +49,7 @@ public class PurchaseInvoiceItemResource {
      */
     @PostMapping("/purchase-invoice-items")
     @Timed
-    public ResponseEntity<PurchaseInvoiceItem> createPurchaseInvoiceItem(@RequestBody PurchaseInvoiceItem purchaseInvoiceItem) throws URISyntaxException {
+    public ResponseEntity<PurchaseInvoiceItem> createPurchaseInvoiceItem(@Valid @RequestBody PurchaseInvoiceItem purchaseInvoiceItem) throws URISyntaxException {
         log.debug("REST request to save PurchaseInvoiceItem : {}", purchaseInvoiceItem);
         if (purchaseInvoiceItem.getId() != null) {
             throw new BadRequestAlertException("A new purchaseInvoiceItem cannot already have an ID", ENTITY_NAME, "idexists");
@@ -70,7 +71,7 @@ public class PurchaseInvoiceItemResource {
      */
     @PutMapping("/purchase-invoice-items")
     @Timed
-    public ResponseEntity<PurchaseInvoiceItem> updatePurchaseInvoiceItem(@RequestBody PurchaseInvoiceItem purchaseInvoiceItem) throws URISyntaxException {
+    public ResponseEntity<PurchaseInvoiceItem> updatePurchaseInvoiceItem(@Valid @RequestBody PurchaseInvoiceItem purchaseInvoiceItem) throws URISyntaxException {
         log.debug("REST request to update PurchaseInvoiceItem : {}", purchaseInvoiceItem);
         if (purchaseInvoiceItem.getId() == null) {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");

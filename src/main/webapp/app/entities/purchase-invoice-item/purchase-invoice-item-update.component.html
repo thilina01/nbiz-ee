@@ -12,7 +12,17 @@
                 <div class="form-group">
                     <label class="form-control-label" for="field_cost">Cost</label>
                     <input type="number" class="form-control" name="cost" id="field_cost"
-                        [(ngModel)]="purchaseInvoiceItem.cost" />
+                        [(ngModel)]="purchaseInvoiceItem.cost" required/>
+                    <div [hidden]="!(editForm.controls.cost?.dirty && editForm.controls.cost?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.cost?.errors?.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.cost?.errors?.number">
+                            This field should be a number.
+                        </small>
+                    </div>
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" for="field_discount">Discount</label>
@@ -22,7 +32,17 @@
                 <div class="form-group">
                     <label class="form-control-label" for="field_sellingPrice">Selling Price</label>
                     <input type="number" class="form-control" name="sellingPrice" id="field_sellingPrice"
-                        [(ngModel)]="purchaseInvoiceItem.sellingPrice" />
+                        [(ngModel)]="purchaseInvoiceItem.sellingPrice" required/>
+                    <div [hidden]="!(editForm.controls.sellingPrice?.dirty && editForm.controls.sellingPrice?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.sellingPrice?.errors?.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.sellingPrice?.errors?.number">
+                            This field should be a number.
+                        </small>
+                    </div>
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" for="field_expiaryDate">Expiary Date</label>
@@ -34,7 +54,17 @@
                 <div class="form-group">
                     <label class="form-control-label" for="field_quantity">Quantity</label>
                     <input type="number" class="form-control" name="quantity" id="field_quantity"
-                        [(ngModel)]="purchaseInvoiceItem.quantity" />
+                        [(ngModel)]="purchaseInvoiceItem.quantity" required/>
+                    <div [hidden]="!(editForm.controls.quantity?.dirty && editForm.controls.quantity?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.quantity?.errors?.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.quantity?.errors?.number">
+                            This field should be a number.
+                        </small>
+                    </div>
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" for="field_serial">Serial</label>

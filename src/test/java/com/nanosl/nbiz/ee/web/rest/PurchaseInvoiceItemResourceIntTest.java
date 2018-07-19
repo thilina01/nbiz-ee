@@ -156,6 +156,60 @@ public class PurchaseInvoiceItemResourceIntTest {
 
     @Test
     @Transactional
+    public void checkCostIsRequired() throws Exception {
+        int databaseSizeBeforeTest = purchaseInvoiceItemRepository.findAll().size();
+        // set the field null
+        purchaseInvoiceItem.setCost(null);
+
+        // Create the PurchaseInvoiceItem, which fails.
+
+        restPurchaseInvoiceItemMockMvc.perform(post("/api/purchase-invoice-items")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(purchaseInvoiceItem)))
+            .andExpect(status().isBadRequest());
+
+        List<PurchaseInvoiceItem> purchaseInvoiceItemList = purchaseInvoiceItemRepository.findAll();
+        assertThat(purchaseInvoiceItemList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
+    public void checkSellingPriceIsRequired() throws Exception {
+        int databaseSizeBeforeTest = purchaseInvoiceItemRepository.findAll().size();
+        // set the field null
+        purchaseInvoiceItem.setSellingPrice(null);
+
+        // Create the PurchaseInvoiceItem, which fails.
+
+        restPurchaseInvoiceItemMockMvc.perform(post("/api/purchase-invoice-items")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(purchaseInvoiceItem)))
+            .andExpect(status().isBadRequest());
+
+        List<PurchaseInvoiceItem> purchaseInvoiceItemList = purchaseInvoiceItemRepository.findAll();
+        assertThat(purchaseInvoiceItemList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
+    public void checkQuantityIsRequired() throws Exception {
+        int databaseSizeBeforeTest = purchaseInvoiceItemRepository.findAll().size();
+        // set the field null
+        purchaseInvoiceItem.setQuantity(null);
+
+        // Create the PurchaseInvoiceItem, which fails.
+
+        restPurchaseInvoiceItemMockMvc.perform(post("/api/purchase-invoice-items")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(purchaseInvoiceItem)))
+            .andExpect(status().isBadRequest());
+
+        List<PurchaseInvoiceItem> purchaseInvoiceItemList = purchaseInvoiceItemRepository.findAll();
+        assertThat(purchaseInvoiceItemList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
     public void getAllPurchaseInvoiceItems() throws Exception {
         // Initialize the database
         purchaseInvoiceItemRepository.saveAndFlush(purchaseInvoiceItem);

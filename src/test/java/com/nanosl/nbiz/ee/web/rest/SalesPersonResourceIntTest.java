@@ -134,6 +134,42 @@ public class SalesPersonResourceIntTest {
 
     @Test
     @Transactional
+    public void checkCodeIsRequired() throws Exception {
+        int databaseSizeBeforeTest = salesPersonRepository.findAll().size();
+        // set the field null
+        salesPerson.setCode(null);
+
+        // Create the SalesPerson, which fails.
+
+        restSalesPersonMockMvc.perform(post("/api/sales-people")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(salesPerson)))
+            .andExpect(status().isBadRequest());
+
+        List<SalesPerson> salesPersonList = salesPersonRepository.findAll();
+        assertThat(salesPersonList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
+    public void checkNameIsRequired() throws Exception {
+        int databaseSizeBeforeTest = salesPersonRepository.findAll().size();
+        // set the field null
+        salesPerson.setName(null);
+
+        // Create the SalesPerson, which fails.
+
+        restSalesPersonMockMvc.perform(post("/api/sales-people")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(salesPerson)))
+            .andExpect(status().isBadRequest());
+
+        List<SalesPerson> salesPersonList = salesPersonRepository.findAll();
+        assertThat(salesPersonList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
     public void getAllSalesPeople() throws Exception {
         // Initialize the database
         salesPersonRepository.saveAndFlush(salesPerson);

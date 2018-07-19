@@ -16,6 +16,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
 
@@ -48,7 +49,7 @@ public class BrandResource {
      */
     @PostMapping("/brands")
     @Timed
-    public ResponseEntity<Brand> createBrand(@RequestBody Brand brand) throws URISyntaxException {
+    public ResponseEntity<Brand> createBrand(@Valid @RequestBody Brand brand) throws URISyntaxException {
         log.debug("REST request to save Brand : {}", brand);
         if (brand.getId() != null) {
             throw new BadRequestAlertException("A new brand cannot already have an ID", ENTITY_NAME, "idexists");
@@ -70,7 +71,7 @@ public class BrandResource {
      */
     @PutMapping("/brands")
     @Timed
-    public ResponseEntity<Brand> updateBrand(@RequestBody Brand brand) throws URISyntaxException {
+    public ResponseEntity<Brand> updateBrand(@Valid @RequestBody Brand brand) throws URISyntaxException {
         log.debug("REST request to update Brand : {}", brand);
         if (brand.getId() == null) {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");

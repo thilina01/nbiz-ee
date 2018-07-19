@@ -23,7 +23,7 @@
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="jhi_cost" type="double">
-                <constraints nullable="true" />
+                <constraints nullable="false" />
             </column>
 
             <column name="discount" type="double">
@@ -31,7 +31,7 @@
             </column>
 
             <column name="selling_price" type="double">
-                <constraints nullable="true" />
+                <constraints nullable="false" />
             </column>
 
             <column name="expiary_date" type="datetime">
@@ -39,7 +39,7 @@
             </column>
 
             <column name="quantity" type="double">
-                <constraints nullable="true" />
+                <constraints nullable="false" />
             </column>
 
             <column name="serial" type="varchar(255)">

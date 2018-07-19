@@ -16,6 +16,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
 
@@ -48,7 +49,7 @@ public class SaleInvoiceItemResource {
      */
     @PostMapping("/sale-invoice-items")
     @Timed
-    public ResponseEntity<SaleInvoiceItem> createSaleInvoiceItem(@RequestBody SaleInvoiceItem saleInvoiceItem) throws URISyntaxException {
+    public ResponseEntity<SaleInvoiceItem> createSaleInvoiceItem(@Valid @RequestBody SaleInvoiceItem saleInvoiceItem) throws URISyntaxException {
         log.debug("REST request to save SaleInvoiceItem : {}", saleInvoiceItem);
         if (saleInvoiceItem.getId() != null) {
             throw new BadRequestAlertException("A new saleInvoiceItem cannot already have an ID", ENTITY_NAME, "idexists");
@@ -70,7 +71,7 @@ public class SaleInvoiceItemResource {
      */
     @PutMapping("/sale-invoice-items")
     @Timed
-    public ResponseEntity<SaleInvoiceItem> updateSaleInvoiceItem(@RequestBody SaleInvoiceItem saleInvoiceItem) throws URISyntaxException {
+    public ResponseEntity<SaleInvoiceItem> updateSaleInvoiceItem(@Valid @RequestBody SaleInvoiceItem saleInvoiceItem) throws URISyntaxException {
         log.debug("REST request to update SaleInvoiceItem : {}", saleInvoiceItem);
         if (saleInvoiceItem.getId() == null) {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");

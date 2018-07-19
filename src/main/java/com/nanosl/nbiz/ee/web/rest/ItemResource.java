@@ -16,6 +16,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
 
@@ -48,7 +49,7 @@ public class ItemResource {
      */
     @PostMapping("/items")
     @Timed
-    public ResponseEntity<Item> createItem(@RequestBody Item item) throws URISyntaxException {
+    public ResponseEntity<Item> createItem(@Valid @RequestBody Item item) throws URISyntaxException {
         log.debug("REST request to save Item : {}", item);
         if (item.getId() != null) {
             throw new BadRequestAlertException("A new item cannot already have an ID", ENTITY_NAME, "idexists");
@@ -70,7 +71,7 @@ public class ItemResource {
      */
     @PutMapping("/items")
     @Timed
-    public ResponseEntity<Item> updateItem(@RequestBody Item item) throws URISyntaxException {
+    public ResponseEntity<Item> updateItem(@Valid @RequestBody Item item) throws URISyntaxException {
         log.debug("REST request to update Item : {}", item);
         if (item.getId() == null) {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");

@@ -134,6 +134,42 @@ public class PaymentMethodResourceIntTest {
 
     @Test
     @Transactional
+    public void checkCodeIsRequired() throws Exception {
+        int databaseSizeBeforeTest = paymentMethodRepository.findAll().size();
+        // set the field null
+        paymentMethod.setCode(null);
+
+        // Create the PaymentMethod, which fails.
+
+        restPaymentMethodMockMvc.perform(post("/api/payment-methods")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(paymentMethod)))
+            .andExpect(status().isBadRequest());
+
+        List<PaymentMethod> paymentMethodList = paymentMethodRepository.findAll();
+        assertThat(paymentMethodList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
+    public void checkNameIsRequired() throws Exception {
+        int databaseSizeBeforeTest = paymentMethodRepository.findAll().size();
+        // set the field null
+        paymentMethod.setName(null);
+
+        // Create the PaymentMethod, which fails.
+
+        restPaymentMethodMockMvc.perform(post("/api/payment-methods")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(paymentMethod)))
+            .andExpect(status().isBadRequest());
+
+        List<PaymentMethod> paymentMethodList = paymentMethodRepository.findAll();
+        assertThat(paymentMethodList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
     public void getAllPaymentMethods() throws Exception {
         // Initialize the database
         paymentMethodRepository.saveAndFlush(paymentMethod);

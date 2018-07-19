@@ -3,7 +3,10 @@
     "fields": [
         {
             "fieldName": "amount",
-            "fieldType": "Double"
+            "fieldType": "Double",
+            "fieldValidateRules": [
+                "required"
+            ]
         },
         {
             "fieldName": "discount",
@@ -11,7 +14,10 @@
         },
         {
             "fieldName": "quantity",
-            "fieldType": "Double"
+            "fieldType": "Double",
+            "fieldValidateRules": [
+                "required"
+            ]
         }
     ],
     "relationships": [

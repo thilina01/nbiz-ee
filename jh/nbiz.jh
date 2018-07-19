@@ -1,18 +1,18 @@
 #title: nbiz
 
 entity Brand{
-	code String,
-    name String
+	code String required,
+    name String required
 }
 
 entity Category{
-	code String,
-    name String
+	code String required,
+    name String required
 }
 
 entity Item{
-	code String,
-    name String,
+	code String required,
+    name String required,
     model String,
     description String,
     reOrderLevel Double,
@@ -20,69 +20,69 @@ entity Item{
 }
 
 entity Supplier{
-	code String,
-    name String
+	code String required,
+    name String required
 }
 
 entity PurchaseInvoice{
-	invoiceDate Instant,
-    amount	Double,
+	invoiceDate Instant required,
+    amount	Double required,
     discount Double
 }
 
 entity PurchaseInvoiceItem{
-    cost Double,
+    cost Double required,
     discount Double,
-    sellingPrice Double,
+    sellingPrice Double required,
 	expiaryDate Instant,
-    quantity Double,
+    quantity Double required,
 	serial String
 }
 
 entity Customer{
-	code String,
-    name String
+	code String required,
+    name String required
 }
 
 entity SalesPerson{
-	code String,
-    name String
+	code String required,
+    name String required
 }
 
 entity SaleInvoice{
-	invoiceDate Instant,
-    amount	Double,
+	invoiceDate Instant required,
+    amount	Double required,
     paidAmount	Double,
-    balanceAmount	Double,
+    balanceAmount Double,
     discount Double
 }
 
 entity SaleInvoiceItem{
-    amount	Double,
+    amount	Double required,
     discount Double,
-    quantity Double
+    quantity Double required
 }
 
 entity Quotation{
-	quotationDate Instant,
-    amount	Double,
+	quotationDate Instant required,
+    amount	Double required,
     discount Double
 }
 
 entity QuotationItem{
-    amount	Double,
+    amount	Double required,
     discount Double,
-    quantity Double
+    quantity Double required
 }
 
 entity PaymentMethod{
-	code String,
-    name String
+	code String required,
+    name String required
 }
 
 entity SaleInvoicePayment{
-	paymentDate Instant,
-	amount Double
+	paymentDate Instant required,
+	amount Double required
 }
 
 relationship OneToMany {

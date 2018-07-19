@@ -6,6 +6,7 @@ import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
+import javax.validation.constraints.*;
 
 import java.io.Serializable;
 import java.time.Instant;
@@ -27,19 +28,22 @@ public class PurchaseInvoiceItem implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "jhi_cost")
+    @NotNull
+    @Column(name = "jhi_cost", nullable = false)
     private Double cost;
 
     @Column(name = "discount")
     private Double discount;
 
-    @Column(name = "selling_price")
+    @NotNull
+    @Column(name = "selling_price", nullable = false)
     private Double sellingPrice;
 
     @Column(name = "expiary_date")
     private Instant expiaryDate;
 
-    @Column(name = "quantity")
+    @NotNull
+    @Column(name = "quantity", nullable = false)
     private Double quantity;
 
     @Column(name = "serial")

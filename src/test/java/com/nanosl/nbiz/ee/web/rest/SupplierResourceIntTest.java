@@ -134,6 +134,42 @@ public class SupplierResourceIntTest {
 
     @Test
     @Transactional
+    public void checkCodeIsRequired() throws Exception {
+        int databaseSizeBeforeTest = supplierRepository.findAll().size();
+        // set the field null
+        supplier.setCode(null);
+
+        // Create the Supplier, which fails.
+
+        restSupplierMockMvc.perform(post("/api/suppliers")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(supplier)))
+            .andExpect(status().isBadRequest());
+
+        List<Supplier> supplierList = supplierRepository.findAll();
+        assertThat(supplierList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
+    public void checkNameIsRequired() throws Exception {
+        int databaseSizeBeforeTest = supplierRepository.findAll().size();
+        // set the field null
+        supplier.setName(null);
+
+        // Create the Supplier, which fails.
+
+        restSupplierMockMvc.perform(post("/api/suppliers")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(supplier)))
+            .andExpect(status().isBadRequest());
+
+        List<Supplier> supplierList = supplierRepository.findAll();
+        assertThat(supplierList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
     public void getAllSuppliers() throws Exception {
         // Initialize the database
         supplierRepository.saveAndFlush(supplier);

@@ -146,6 +146,42 @@ public class PurchaseInvoiceResourceIntTest {
 
     @Test
     @Transactional
+    public void checkInvoiceDateIsRequired() throws Exception {
+        int databaseSizeBeforeTest = purchaseInvoiceRepository.findAll().size();
+        // set the field null
+        purchaseInvoice.setInvoiceDate(null);
+
+        // Create the PurchaseInvoice, which fails.
+
+        restPurchaseInvoiceMockMvc.perform(post("/api/purchase-invoices")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(purchaseInvoice)))
+            .andExpect(status().isBadRequest());
+
+        List<PurchaseInvoice> purchaseInvoiceList = purchaseInvoiceRepository.findAll();
+        assertThat(purchaseInvoiceList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
+    public void checkAmountIsRequired() throws Exception {
+        int databaseSizeBeforeTest = purchaseInvoiceRepository.findAll().size();
+        // set the field null
+        purchaseInvoice.setAmount(null);
+
+        // Create the PurchaseInvoice, which fails.
+
+        restPurchaseInvoiceMockMvc.perform(post("/api/purchase-invoices")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(purchaseInvoice)))
+            .andExpect(status().isBadRequest());
+
+        List<PurchaseInvoice> purchaseInvoiceList = purchaseInvoiceRepository.findAll();
+        assertThat(purchaseInvoiceList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
     public void getAllPurchaseInvoices() throws Exception {
         // Initialize the database
         purchaseInvoiceRepository.saveAndFlush(purchaseInvoice);
