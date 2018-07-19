@@ -6,78 +6,71 @@
                 <jhi-alert-error></jhi-alert-error>
                 <div class="form-group" [hidden]="!saleInvoice.id">
                     <label for="id">ID</label>
-                    <input type="text" class="form-control" id="id" name="id"
-                        [(ngModel)]="saleInvoice.id" readonly />
+                    <input type="text" class="form-control" id="id" name="id" [(ngModel)]="saleInvoice.id" readonly />
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" for="field_invoiceDate">Invoice Date</label>
                     <div class="d-flex">
-                        <input id="field_invoiceDate" type="datetime-local" class="form-control" name="invoiceDate" [(ngModel)]="invoiceDate"
-                        required/>
+                        <input id="field_invoiceDate" type="datetime-local" class="form-control" name="invoiceDate" [(ngModel)]="invoiceDate" required/>
                     </div>
                     <div [hidden]="!(editForm.controls.invoiceDate?.dirty && editForm.controls.invoiceDate?.invalid)">
-                        <small class="form-text text-danger"
-                        [hidden]="!editForm.controls.invoiceDate?.errors?.required">
-                        This field is required.
+                        <small class="form-text text-danger" [hidden]="!editForm.controls.invoiceDate?.errors?.required">
+                            This field is required.
                         </small>
-                        <small class="form-text text-danger"
-                            [hidden]="!editForm.controls.invoiceDate?.errors?.ZonedDateTimelocal">
+                        <small class="form-text text-danger" [hidden]="!editForm.controls.invoiceDate?.errors?.ZonedDateTimelocal">
                             This field should be a date and time.
                         </small>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" for="field_amount">Amount</label>
-                    <input type="number" class="form-control" name="amount" id="field_amount"
-                        [(ngModel)]="saleInvoice.amount" required/>
+                    <input type="number" class="form-control" name="amount" id="field_amount" [(ngModel)]="saleInvoice.amount" required/>
                     <div [hidden]="!(editForm.controls.amount?.dirty && editForm.controls.amount?.invalid)">
-                        <small class="form-text text-danger"
-                        [hidden]="!editForm.controls.amount?.errors?.required">
-                        This field is required.
+                        <small class="form-text text-danger" [hidden]="!editForm.controls.amount?.errors?.required">
+                            This field is required.
                         </small>
-                        <small class="form-text text-danger"
-                            [hidden]="!editForm.controls.amount?.errors?.number">
+                        <small class="form-text text-danger" [hidden]="!editForm.controls.amount?.errors?.number">
                             This field should be a number.
                         </small>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" for="field_paidAmount">Paid Amount</label>
-                    <input type="number" class="form-control" name="paidAmount" id="field_paidAmount"
-                        [(ngModel)]="saleInvoice.paidAmount" />
+                    <input type="number" class="form-control" name="paidAmount" id="field_paidAmount" [(ngModel)]="saleInvoice.paidAmount" />
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" for="field_balanceAmount">Balance Amount</label>
-                    <input type="number" class="form-control" name="balanceAmount" id="field_balanceAmount"
-                        [(ngModel)]="saleInvoice.balanceAmount" />
+                    <input type="number" class="form-control" name="balanceAmount" id="field_balanceAmount" [(ngModel)]="saleInvoice.balanceAmount"
+                    />
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" for="field_discount">Discount</label>
-                    <input type="number" class="form-control" name="discount" id="field_discount"
-                        [(ngModel)]="saleInvoice.discount" />
+                    <input type="number" class="form-control" name="discount" id="field_discount" [(ngModel)]="saleInvoice.discount" />
                 </div>
 
                 <div class="form-group">
                     <label class="form-control-label" for="field_customer">Customer</label>
-                    <select class="form-control" id="field_customer" name="customer" [(ngModel)]="saleInvoice.customer" >
+                    <select class="form-control" id="field_customer" name="customer" [(ngModel)]="saleInvoice.customer">
                         <option [ngValue]="null"></option>
                         <option [ngValue]="customerOption.id === saleInvoice.customer?.id ? saleInvoice.customer : customerOption" *ngFor="let customerOption of customers; trackBy: trackCustomerById">{{customerOption.name}}</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" for="field_salesPerson">Sales Person</label>
-                    <select class="form-control" id="field_salesPerson" name="salesPerson" [(ngModel)]="saleInvoice.salesPerson" >
+                    <select class="form-control" id="field_salesPerson" name="salesPerson" [(ngModel)]="saleInvoice.salesPerson">
                         <option [ngValue]="null"></option>
                         <option [ngValue]="salesPersonOption.id === saleInvoice.salesPerson?.id ? saleInvoice.salesPerson : salesPersonOption" *ngFor="let salesPersonOption of salespeople; trackBy: trackSalesPersonById">{{salesPersonOption.name}}</option>
                     </select>
                 </div>
             </div>
             <div>
-                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
-                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;
+                    <span>Cancel</span>
                 </button>
                 <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
-                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;
+                    <span>Save</span>
                 </button>
             </div>
         </form>
