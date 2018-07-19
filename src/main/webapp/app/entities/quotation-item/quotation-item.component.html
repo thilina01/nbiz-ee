@@ -15,7 +15,7 @@
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
             <th jhiSortBy="id"><span>ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="amount"><span>Amount</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="sellingPrice"><span>Selling Price</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="discount"><span>Discount</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="quantity"><span>Quantity</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="quotation.id"><span>Quotation</span> <fa-icon [icon]="'sort'"></fa-icon></th>
@@ -26,7 +26,7 @@
             <tbody>
             <tr *ngFor="let quotationItem of quotationItems ;trackBy: trackId">
                 <td><a [routerLink]="['/quotation-item', quotationItem.id, 'view' ]">{{quotationItem.id}}</a></td>
-                <td>{{quotationItem.amount}}</td>
+                <td>{{quotationItem.sellingPrice}}</td>
                 <td>{{quotationItem.discount}}</td>
                 <td>{{quotationItem.quantity}}</td>
                 <td>

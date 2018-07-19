@@ -25,8 +25,8 @@ public class QuotationItem implements Serializable {
     private Long id;
 
     @NotNull
-    @Column(name = "amount", nullable = false)
-    private Double amount;
+    @Column(name = "selling_price", nullable = false)
+    private Double sellingPrice;
 
     @Column(name = "discount")
     private Double discount;
@@ -52,17 +52,17 @@ public class QuotationItem implements Serializable {
         this.id = id;
     }
 
-    public Double getAmount() {
-        return amount;
+    public Double getSellingPrice() {
+        return sellingPrice;
     }
 
-    public QuotationItem amount(Double amount) {
-        this.amount = amount;
+    public QuotationItem sellingPrice(Double sellingPrice) {
+        this.sellingPrice = sellingPrice;
         return this;
     }
 
-    public void setAmount(Double amount) {
-        this.amount = amount;
+    public void setSellingPrice(Double sellingPrice) {
+        this.sellingPrice = sellingPrice;
     }
 
     public Double getDiscount() {
@@ -142,7 +142,7 @@ public class QuotationItem implements Serializable {
     public String toString() {
         return "QuotationItem{" +
             "id=" + getId() +
-            ", amount=" + getAmount() +
+            ", sellingPrice=" + getSellingPrice() +
             ", discount=" + getDiscount() +
             ", quantity=" + getQuantity() +
             "}";

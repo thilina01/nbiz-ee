@@ -15,7 +15,7 @@
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
             <th jhiSortBy="id"><span>ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="amount"><span>Amount</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="sellingPrice"><span>Selling Price</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="discount"><span>Discount</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="quantity"><span>Quantity</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="saleInvoice.id"><span>Sale Invoice</span> <fa-icon [icon]="'sort'"></fa-icon></th>
@@ -26,7 +26,7 @@
             <tbody>
             <tr *ngFor="let saleInvoiceItem of saleInvoiceItems ;trackBy: trackId">
                 <td><a [routerLink]="['/sale-invoice-item', saleInvoiceItem.id, 'view' ]">{{saleInvoiceItem.id}}</a></td>
-                <td>{{saleInvoiceItem.amount}}</td>
+                <td>{{saleInvoiceItem.sellingPrice}}</td>
                 <td>{{saleInvoiceItem.discount}}</td>
                 <td>{{saleInvoiceItem.quantity}}</td>
                 <td>

@@ -58,7 +58,7 @@ entity SaleInvoice{
 }
 
 entity SaleInvoiceItem{
-    amount	Double required,
+    sellingPrice	Double required,
     discount Double,
     quantity Double required
 }
@@ -70,7 +70,7 @@ entity Quotation{
 }
 
 entity QuotationItem{
-    amount	Double required,
+    sellingPrice	Double required,
     discount Double,
     quantity Double required
 }

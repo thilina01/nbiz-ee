@@ -39,8 +39,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(classes = NBizEeApp.class)
 public class QuotationItemResourceIntTest {
 
-    private static final Double DEFAULT_AMOUNT = 1D;
-    private static final Double UPDATED_AMOUNT = 2D;
+    private static final Double DEFAULT_SELLING_PRICE = 1D;
+    private static final Double UPDATED_SELLING_PRICE = 2D;
 
     private static final Double DEFAULT_DISCOUNT = 1D;
     private static final Double UPDATED_DISCOUNT = 2D;
@@ -87,7 +87,7 @@ public class QuotationItemResourceIntTest {
      */
     public static QuotationItem createEntity(EntityManager em) {
         QuotationItem quotationItem = new QuotationItem()
-            .amount(DEFAULT_AMOUNT)
+            .sellingPrice(DEFAULT_SELLING_PRICE)
             .discount(DEFAULT_DISCOUNT)
             .quantity(DEFAULT_QUANTITY);
         return quotationItem;
@@ -113,7 +113,7 @@ public class QuotationItemResourceIntTest {
         List<QuotationItem> quotationItemList = quotationItemRepository.findAll();
         assertThat(quotationItemList).hasSize(databaseSizeBeforeCreate + 1);
         QuotationItem testQuotationItem = quotationItemList.get(quotationItemList.size() - 1);
-        assertThat(testQuotationItem.getAmount()).isEqualTo(DEFAULT_AMOUNT);
+        assertThat(testQuotationItem.getSellingPrice()).isEqualTo(DEFAULT_SELLING_PRICE);
         assertThat(testQuotationItem.getDiscount()).isEqualTo(DEFAULT_DISCOUNT);
         assertThat(testQuotationItem.getQuantity()).isEqualTo(DEFAULT_QUANTITY);
     }
@@ -139,10 +139,10 @@ public class QuotationItemResourceIntTest {
 
     @Test
     @Transactional
-    public void checkAmountIsRequired() throws Exception {
+    public void checkSellingPriceIsRequired() throws Exception {
         int databaseSizeBeforeTest = quotationItemRepository.findAll().size();
         // set the field null
-        quotationItem.setAmount(null);
+        quotationItem.setSellingPrice(null);
 
         // Create the QuotationItem, which fails.
 
@@ -184,7 +184,7 @@ public class QuotationItemResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(quotationItem.getId().intValue())))
-            .andExpect(jsonPath("$.[*].amount").value(hasItem(DEFAULT_AMOUNT.doubleValue())))
+            .andExpect(jsonPath("$.[*].sellingPrice").value(hasItem(DEFAULT_SELLING_PRICE.doubleValue())))
             .andExpect(jsonPath("$.[*].discount").value(hasItem(DEFAULT_DISCOUNT.doubleValue())))
             .andExpect(jsonPath("$.[*].quantity").value(hasItem(DEFAULT_QUANTITY.doubleValue())));
     }
@@ -201,7 +201,7 @@ public class QuotationItemResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(quotationItem.getId().intValue()))
-            .andExpect(jsonPath("$.amount").value(DEFAULT_AMOUNT.doubleValue()))
+            .andExpect(jsonPath("$.sellingPrice").value(DEFAULT_SELLING_PRICE.doubleValue()))
             .andExpect(jsonPath("$.discount").value(DEFAULT_DISCOUNT.doubleValue()))
             .andExpect(jsonPath("$.quantity").value(DEFAULT_QUANTITY.doubleValue()));
     }
@@ -226,7 +226,7 @@ public class QuotationItemResourceIntTest {
         // Disconnect from session so that the updates on updatedQuotationItem are not directly saved in db
         em.detach(updatedQuotationItem);
         updatedQuotationItem
-            .amount(UPDATED_AMOUNT)
+            .sellingPrice(UPDATED_SELLING_PRICE)
             .discount(UPDATED_DISCOUNT)
             .quantity(UPDATED_QUANTITY);
 
@@ -239,7 +239,7 @@ public class QuotationItemResourceIntTest {
         List<QuotationItem> quotationItemList = quotationItemRepository.findAll();
         assertThat(quotationItemList).hasSize(databaseSizeBeforeUpdate);
         QuotationItem testQuotationItem = quotationItemList.get(quotationItemList.size() - 1);
-        assertThat(testQuotationItem.getAmount()).isEqualTo(UPDATED_AMOUNT);
+        assertThat(testQuotationItem.getSellingPrice()).isEqualTo(UPDATED_SELLING_PRICE);
         assertThat(testQuotationItem.getDiscount()).isEqualTo(UPDATED_DISCOUNT);
         assertThat(testQuotationItem.getQuantity()).isEqualTo(UPDATED_QUANTITY);
     }

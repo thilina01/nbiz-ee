@@ -3,7 +3,7 @@ import { IPurchaseInvoiceItem } from 'app/shared/model//purchase-invoice-item.mo
 
 export interface IQuotationItem {
     id?: number;
-    amount?: number;
+    sellingPrice?: number;
     discount?: number;
     quantity?: number;
     quotation?: IQuotation;
@@ -13,7 +13,7 @@ export interface IQuotationItem {
 export class QuotationItem implements IQuotationItem {
     constructor(
         public id?: number,
-        public amount?: number,
+        public sellingPrice?: number,
         public discount?: number,
         public quantity?: number,
         public quotation?: IQuotation,

@@ -39,8 +39,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(classes = NBizEeApp.class)
 public class SaleInvoiceItemResourceIntTest {
 
-    private static final Double DEFAULT_AMOUNT = 1D;
-    private static final Double UPDATED_AMOUNT = 2D;
+    private static final Double DEFAULT_SELLING_PRICE = 1D;
+    private static final Double UPDATED_SELLING_PRICE = 2D;
 
     private static final Double DEFAULT_DISCOUNT = 1D;
     private static final Double UPDATED_DISCOUNT = 2D;
@@ -87,7 +87,7 @@ public class SaleInvoiceItemResourceIntTest {
      */
     public static SaleInvoiceItem createEntity(EntityManager em) {
         SaleInvoiceItem saleInvoiceItem = new SaleInvoiceItem()
-            .amount(DEFAULT_AMOUNT)
+            .sellingPrice(DEFAULT_SELLING_PRICE)
             .discount(DEFAULT_DISCOUNT)
             .quantity(DEFAULT_QUANTITY);
         return saleInvoiceItem;
@@ -113,7 +113,7 @@ public class SaleInvoiceItemResourceIntTest {
         List<SaleInvoiceItem> saleInvoiceItemList = saleInvoiceItemRepository.findAll();
         assertThat(saleInvoiceItemList).hasSize(databaseSizeBeforeCreate + 1);
         SaleInvoiceItem testSaleInvoiceItem = saleInvoiceItemList.get(saleInvoiceItemList.size() - 1);
-        assertThat(testSaleInvoiceItem.getAmount()).isEqualTo(DEFAULT_AMOUNT);
+        assertThat(testSaleInvoiceItem.getSellingPrice()).isEqualTo(DEFAULT_SELLING_PRICE);
         assertThat(testSaleInvoiceItem.getDiscount()).isEqualTo(DEFAULT_DISCOUNT);
         assertThat(testSaleInvoiceItem.getQuantity()).isEqualTo(DEFAULT_QUANTITY);
     }
@@ -139,10 +139,10 @@ public class SaleInvoiceItemResourceIntTest {
 
     @Test
     @Transactional
-    public void checkAmountIsRequired() throws Exception {
+    public void checkSellingPriceIsRequired() throws Exception {
         int databaseSizeBeforeTest = saleInvoiceItemRepository.findAll().size();
         // set the field null
-        saleInvoiceItem.setAmount(null);
+        saleInvoiceItem.setSellingPrice(null);
 
         // Create the SaleInvoiceItem, which fails.
 
@@ -184,7 +184,7 @@ public class SaleInvoiceItemResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(saleInvoiceItem.getId().intValue())))
-            .andExpect(jsonPath("$.[*].amount").value(hasItem(DEFAULT_AMOUNT.doubleValue())))
+            .andExpect(jsonPath("$.[*].sellingPrice").value(hasItem(DEFAULT_SELLING_PRICE.doubleValue())))
             .andExpect(jsonPath("$.[*].discount").value(hasItem(DEFAULT_DISCOUNT.doubleValue())))
             .andExpect(jsonPath("$.[*].quantity").value(hasItem(DEFAULT_QUANTITY.doubleValue())));
     }
@@ -201,7 +201,7 @@ public class SaleInvoiceItemResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(saleInvoiceItem.getId().intValue()))
-            .andExpect(jsonPath("$.amount").value(DEFAULT_AMOUNT.doubleValue()))
+            .andExpect(jsonPath("$.sellingPrice").value(DEFAULT_SELLING_PRICE.doubleValue()))
             .andExpect(jsonPath("$.discount").value(DEFAULT_DISCOUNT.doubleValue()))
             .andExpect(jsonPath("$.quantity").value(DEFAULT_QUANTITY.doubleValue()));
     }
@@ -226,7 +226,7 @@ public class SaleInvoiceItemResourceIntTest {
         // Disconnect from session so that the updates on updatedSaleInvoiceItem are not directly saved in db
         em.detach(updatedSaleInvoiceItem);
         updatedSaleInvoiceItem
-            .amount(UPDATED_AMOUNT)
+            .sellingPrice(UPDATED_SELLING_PRICE)
             .discount(UPDATED_DISCOUNT)
             .quantity(UPDATED_QUANTITY);
 
@@ -239,7 +239,7 @@ public class SaleInvoiceItemResourceIntTest {
         List<SaleInvoiceItem> saleInvoiceItemList = saleInvoiceItemRepository.findAll();
         assertThat(saleInvoiceItemList).hasSize(databaseSizeBeforeUpdate);
         SaleInvoiceItem testSaleInvoiceItem = saleInvoiceItemList.get(saleInvoiceItemList.size() - 1);
-        assertThat(testSaleInvoiceItem.getAmount()).isEqualTo(UPDATED_AMOUNT);
+        assertThat(testSaleInvoiceItem.getSellingPrice()).isEqualTo(UPDATED_SELLING_PRICE);
         assertThat(testSaleInvoiceItem.getDiscount()).isEqualTo(UPDATED_DISCOUNT);
         assertThat(testSaleInvoiceItem.getQuantity()).isEqualTo(UPDATED_QUANTITY);
     }

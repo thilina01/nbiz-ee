@@ -2,7 +2,7 @@
     "name": "SaleInvoiceItem",
     "fields": [
         {
-            "fieldName": "amount",
+            "fieldName": "sellingPrice",
             "fieldType": "Double",
             "fieldValidateRules": [
                 "required"
