@@ -1,0 +1,60 @@
+{
+    "name": "SaleInvoice",
+    "fields": [
+        {
+            "fieldName": "invoiceDate",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "amount",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "paidAmount",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "balanceAmount",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "discount",
+            "fieldType": "Double"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "saleInvoiceItem",
+            "otherEntityName": "saleInvoiceItem",
+            "otherEntityRelationshipName": "saleInvoice"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "saleInvoice",
+            "otherEntityName": "saleInvoicePayment",
+            "otherEntityRelationshipName": "saleInvoice"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "customer",
+            "otherEntityName": "customer",
+            "otherEntityField": "name"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "salesPerson",
+            "otherEntityName": "salesPerson",
+            "otherEntityField": "name"
+        }
+    ],
+    "changelogDate": "20180719065355",
+    "entityTableName": "sale_invoice",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

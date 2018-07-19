@@ -1,0 +1,30 @@
+{
+    "name": "SalesPerson",
+    "fields": [
+        {
+            "fieldName": "code",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "name",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "saleInvoice",
+            "otherEntityName": "saleInvoice",
+            "otherEntityRelationshipName": "salesPerson"
+        }
+    ],
+    "changelogDate": "20180719065354",
+    "entityTableName": "sales_person",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

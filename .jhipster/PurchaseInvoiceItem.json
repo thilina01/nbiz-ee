@@ -1,0 +1,64 @@
+{
+    "name": "PurchaseInvoiceItem",
+    "fields": [
+        {
+            "fieldName": "cost",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "discount",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "sellingPrice",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "expiaryDate",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "quantity",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "serial",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipName": "purchaseInvoice",
+            "otherEntityName": "purchaseInvoice",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "saleInvoiceItem",
+            "otherEntityName": "saleInvoiceItem",
+            "otherEntityRelationshipName": "purchaseInvoiceItem"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "quotationItem",
+            "otherEntityName": "quotationItem",
+            "otherEntityRelationshipName": "purchaseInvoiceItem"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "item",
+            "otherEntityName": "item",
+            "otherEntityField": "code"
+        }
+    ],
+    "changelogDate": "20180719065352",
+    "entityTableName": "purchase_invoice_item",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

@@ -1,0 +1,40 @@
+{
+    "name": "PurchaseInvoice",
+    "fields": [
+        {
+            "fieldName": "invoiceDate",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "amount",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "discount",
+            "fieldType": "Double"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "purchaseInvoice",
+            "otherEntityName": "purchaseInvoiceItem",
+            "otherEntityRelationshipName": "purchaseInvoice"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "supplier",
+            "otherEntityName": "supplier",
+            "otherEntityField": "name"
+        }
+    ],
+    "changelogDate": "20180719065351",
+    "entityTableName": "purchase_invoice",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

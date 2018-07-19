@@ -1,0 +1,82 @@
+<div>
+    <h2 id="page-heading">
+        <span>Sale Invoices</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-sale-invoice" [routerLink]="['/sale-invoice/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span >
+            Create new Sale Invoice
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive" *ngIf="saleInvoices">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th jhiSortBy="id"><span>ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="invoiceDate"><span>Invoice Date</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="amount"><span>Amount</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="paidAmount"><span>Paid Amount</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="balanceAmount"><span>Balance Amount</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="discount"><span>Discount</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="customer.name"><span>Customer</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="salesPerson.name"><span>Sales Person</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let saleInvoice of saleInvoices ;trackBy: trackId">
+                <td><a [routerLink]="['/sale-invoice', saleInvoice.id, 'view' ]">{{saleInvoice.id}}</a></td>
+                <td>{{saleInvoice.invoiceDate | date:'medium'}}</td>
+                <td>{{saleInvoice.amount}}</td>
+                <td>{{saleInvoice.paidAmount}}</td>
+                <td>{{saleInvoice.balanceAmount}}</td>
+                <td>{{saleInvoice.discount}}</td>
+                <td>
+                    <div *ngIf="saleInvoice.customer">
+                        <a [routerLink]="['../customer', saleInvoice.customer?.id, 'view' ]" >{{saleInvoice.customer?.name}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="saleInvoice.salesPerson">
+                        <a [routerLink]="['../sales-person', saleInvoice.salesPerson?.id, 'view' ]" >{{saleInvoice.salesPerson?.name}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/sale-invoice', saleInvoice.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/sale-invoice', saleInvoice.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'sale-invoice/'+ saleInvoice.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div *ngIf="saleInvoices && saleInvoices.length">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="queryCount" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+        </div>
+    </div>
+</div>

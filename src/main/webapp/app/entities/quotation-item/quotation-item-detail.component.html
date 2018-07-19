@@ -1,0 +1,47 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="quotationItem">
+            <h2><span>Quotation Item</span> {{quotationItem.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Amount</span></dt>
+                <dd>
+                    <span>{{quotationItem.amount}}</span>
+                </dd>
+                <dt><span>Discount</span></dt>
+                <dd>
+                    <span>{{quotationItem.discount}}</span>
+                </dd>
+                <dt><span>Quantity</span></dt>
+                <dd>
+                    <span>{{quotationItem.quantity}}</span>
+                </dd>
+                <dt><span>Quotation</span></dt>
+                <dd>
+                    <div *ngIf="quotationItem.quotation">
+                        <a [routerLink]="['/quotation', quotationItem.quotation?.id, 'view']">{{quotationItem.quotation?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span>Purchase Invoice Item</span></dt>
+                <dd>
+                    <div *ngIf="quotationItem.purchaseInvoiceItem">
+                        <a [routerLink]="['/purchase-invoice-item', quotationItem.purchaseInvoiceItem?.id, 'view']">{{quotationItem.purchaseInvoiceItem?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/quotation-item', quotationItem.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

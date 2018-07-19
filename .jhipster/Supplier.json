@@ -1,0 +1,30 @@
+{
+    "name": "Supplier",
+    "fields": [
+        {
+            "fieldName": "code",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "name",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "purchaseInvoice",
+            "otherEntityName": "purchaseInvoice",
+            "otherEntityRelationshipName": "supplier"
+        }
+    ],
+    "changelogDate": "20180719065350",
+    "entityTableName": "supplier",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

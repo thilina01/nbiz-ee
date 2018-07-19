@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity SaleInvoice.
+    -->
+    <changeSet id="20180719065355-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="customer_id"
+                                 baseTableName="sale_invoice"
+                                 constraintName="fk_sale_invoice_customer_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="customer"/>
+
+        <addForeignKeyConstraint baseColumnNames="sales_person_id"
+                                 baseTableName="sale_invoice"
+                                 constraintName="fk_sale_invoice_sales_person_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="sales_person"/>
+
+    </changeSet>
+</databaseChangeLog>

@@ -5,6 +5,28 @@
     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
 
     <include file="config/liquibase/changelog/00000000000000_initial_schema.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180719065347_added_entity_Brand.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180719065348_added_entity_Category.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180719065349_added_entity_Item.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180719065350_added_entity_Supplier.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180719065351_added_entity_PurchaseInvoice.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180719065352_added_entity_PurchaseInvoiceItem.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180719065353_added_entity_Customer.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180719065354_added_entity_SalesPerson.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180719065355_added_entity_SaleInvoice.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180719065356_added_entity_SaleInvoiceItem.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180719065357_added_entity_Quotation.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180719065358_added_entity_QuotationItem.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180719065359_added_entity_PaymentMethod.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180719065400_added_entity_SaleInvoicePayment.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
+    <include file="config/liquibase/changelog/20180719065349_added_entity_constraints_Item.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180719065351_added_entity_constraints_PurchaseInvoice.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180719065352_added_entity_constraints_PurchaseInvoiceItem.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180719065355_added_entity_constraints_SaleInvoice.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180719065356_added_entity_constraints_SaleInvoiceItem.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180719065357_added_entity_constraints_Quotation.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180719065358_added_entity_constraints_QuotationItem.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180719065400_added_entity_constraints_SaleInvoicePayment.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
 </databaseChangeLog>

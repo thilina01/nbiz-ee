@@ -1,0 +1,53 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-quotation-item-heading">Create or edit a Quotation Item</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!quotationItem.id">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="quotationItem.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_amount">Amount</label>
+                    <input type="number" class="form-control" name="amount" id="field_amount"
+                        [(ngModel)]="quotationItem.amount" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_discount">Discount</label>
+                    <input type="number" class="form-control" name="discount" id="field_discount"
+                        [(ngModel)]="quotationItem.discount" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_quantity">Quantity</label>
+                    <input type="number" class="form-control" name="quantity" id="field_quantity"
+                        [(ngModel)]="quotationItem.quantity" />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_quotation">Quotation</label>
+                    <select class="form-control" id="field_quotation" name="quotation" [(ngModel)]="quotationItem.quotation" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="quotationOption.id === quotationItem.quotation?.id ? quotationItem.quotation : quotationOption" *ngFor="let quotationOption of quotations; trackBy: trackQuotationById">{{quotationOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_purchaseInvoiceItem">Purchase Invoice Item</label>
+                    <select class="form-control" id="field_purchaseInvoiceItem" name="purchaseInvoiceItem" [(ngModel)]="quotationItem.purchaseInvoiceItem" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="purchaseInvoiceItemOption.id === quotationItem.purchaseInvoiceItem?.id ? quotationItem.purchaseInvoiceItem : purchaseInvoiceItemOption" *ngFor="let purchaseInvoiceItemOption of purchaseinvoiceitems; trackBy: trackPurchaseInvoiceItemById">{{purchaseInvoiceItemOption.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

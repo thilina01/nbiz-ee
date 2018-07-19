@@ -1,0 +1,55 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="saleInvoice">
+            <h2><span>Sale Invoice</span> {{saleInvoice.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Invoice Date</span></dt>
+                <dd>
+                    <span>{{saleInvoice.invoiceDate}}</span>
+                </dd>
+                <dt><span>Amount</span></dt>
+                <dd>
+                    <span>{{saleInvoice.amount}}</span>
+                </dd>
+                <dt><span>Paid Amount</span></dt>
+                <dd>
+                    <span>{{saleInvoice.paidAmount}}</span>
+                </dd>
+                <dt><span>Balance Amount</span></dt>
+                <dd>
+                    <span>{{saleInvoice.balanceAmount}}</span>
+                </dd>
+                <dt><span>Discount</span></dt>
+                <dd>
+                    <span>{{saleInvoice.discount}}</span>
+                </dd>
+                <dt><span>Customer</span></dt>
+                <dd>
+                    <div *ngIf="saleInvoice.customer">
+                        <a [routerLink]="['/customer', saleInvoice.customer?.id, 'view']">{{saleInvoice.customer?.name}}</a>
+                    </div>
+                </dd>
+                <dt><span>Sales Person</span></dt>
+                <dd>
+                    <div *ngIf="saleInvoice.salesPerson">
+                        <a [routerLink]="['/sales-person', saleInvoice.salesPerson?.id, 'view']">{{saleInvoice.salesPerson?.name}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/sale-invoice', saleInvoice.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

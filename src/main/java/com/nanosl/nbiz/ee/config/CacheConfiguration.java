@@ -38,6 +38,34 @@ public class CacheConfiguration {
             cm.createCache(com.nanosl.nbiz.ee.domain.User.class.getName(), jcacheConfiguration);
             cm.createCache(com.nanosl.nbiz.ee.domain.Authority.class.getName(), jcacheConfiguration);
             cm.createCache(com.nanosl.nbiz.ee.domain.User.class.getName() + ".authorities", jcacheConfiguration);
+            cm.createCache(com.nanosl.nbiz.ee.domain.Brand.class.getName(), jcacheConfiguration);
+            cm.createCache(com.nanosl.nbiz.ee.domain.Brand.class.getName() + ".items", jcacheConfiguration);
+            cm.createCache(com.nanosl.nbiz.ee.domain.Category.class.getName(), jcacheConfiguration);
+            cm.createCache(com.nanosl.nbiz.ee.domain.Category.class.getName() + ".items", jcacheConfiguration);
+            cm.createCache(com.nanosl.nbiz.ee.domain.Item.class.getName(), jcacheConfiguration);
+            cm.createCache(com.nanosl.nbiz.ee.domain.Item.class.getName() + ".purchaseInvoiceItems", jcacheConfiguration);
+            cm.createCache(com.nanosl.nbiz.ee.domain.Supplier.class.getName(), jcacheConfiguration);
+            cm.createCache(com.nanosl.nbiz.ee.domain.Supplier.class.getName() + ".purchaseInvoices", jcacheConfiguration);
+            cm.createCache(com.nanosl.nbiz.ee.domain.PurchaseInvoice.class.getName(), jcacheConfiguration);
+            cm.createCache(com.nanosl.nbiz.ee.domain.PurchaseInvoice.class.getName() + ".purchaseInvoices", jcacheConfiguration);
+            cm.createCache(com.nanosl.nbiz.ee.domain.PurchaseInvoiceItem.class.getName(), jcacheConfiguration);
+            cm.createCache(com.nanosl.nbiz.ee.domain.PurchaseInvoiceItem.class.getName() + ".saleInvoiceItems", jcacheConfiguration);
+            cm.createCache(com.nanosl.nbiz.ee.domain.PurchaseInvoiceItem.class.getName() + ".quotationItems", jcacheConfiguration);
+            cm.createCache(com.nanosl.nbiz.ee.domain.Customer.class.getName(), jcacheConfiguration);
+            cm.createCache(com.nanosl.nbiz.ee.domain.Customer.class.getName() + ".saleInvoices", jcacheConfiguration);
+            cm.createCache(com.nanosl.nbiz.ee.domain.Customer.class.getName() + ".quotations", jcacheConfiguration);
+            cm.createCache(com.nanosl.nbiz.ee.domain.SalesPerson.class.getName(), jcacheConfiguration);
+            cm.createCache(com.nanosl.nbiz.ee.domain.SalesPerson.class.getName() + ".saleInvoices", jcacheConfiguration);
+            cm.createCache(com.nanosl.nbiz.ee.domain.SaleInvoice.class.getName(), jcacheConfiguration);
+            cm.createCache(com.nanosl.nbiz.ee.domain.SaleInvoice.class.getName() + ".saleInvoiceItems", jcacheConfiguration);
+            cm.createCache(com.nanosl.nbiz.ee.domain.SaleInvoice.class.getName() + ".saleInvoices", jcacheConfiguration);
+            cm.createCache(com.nanosl.nbiz.ee.domain.SaleInvoiceItem.class.getName(), jcacheConfiguration);
+            cm.createCache(com.nanosl.nbiz.ee.domain.Quotation.class.getName(), jcacheConfiguration);
+            cm.createCache(com.nanosl.nbiz.ee.domain.Quotation.class.getName() + ".quotations", jcacheConfiguration);
+            cm.createCache(com.nanosl.nbiz.ee.domain.QuotationItem.class.getName(), jcacheConfiguration);
+            cm.createCache(com.nanosl.nbiz.ee.domain.PaymentMethod.class.getName(), jcacheConfiguration);
+            cm.createCache(com.nanosl.nbiz.ee.domain.PaymentMethod.class.getName() + ".saleInvoicePayments", jcacheConfiguration);
+            cm.createCache(com.nanosl.nbiz.ee.domain.SaleInvoicePayment.class.getName(), jcacheConfiguration);
             // jhipster-needle-ehcache-add-entry
         };
     }

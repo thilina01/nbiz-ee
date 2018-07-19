@@ -1,0 +1,40 @@
+{
+    "name": "QuotationItem",
+    "fields": [
+        {
+            "fieldName": "amount",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "discount",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "quantity",
+            "fieldType": "Double"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipName": "quotation",
+            "otherEntityName": "quotation",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "purchaseInvoiceItem",
+            "otherEntityName": "purchaseInvoiceItem",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20180719065358",
+    "entityTableName": "quotation_item",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

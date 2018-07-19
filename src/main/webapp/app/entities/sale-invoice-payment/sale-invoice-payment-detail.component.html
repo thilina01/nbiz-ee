@@ -1,0 +1,43 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="saleInvoicePayment">
+            <h2><span>Sale Invoice Payment</span> {{saleInvoicePayment.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Payment Date</span></dt>
+                <dd>
+                    <span>{{saleInvoicePayment.paymentDate}}</span>
+                </dd>
+                <dt><span>Amount</span></dt>
+                <dd>
+                    <span>{{saleInvoicePayment.amount}}</span>
+                </dd>
+                <dt><span>Sale Invoice</span></dt>
+                <dd>
+                    <div *ngIf="saleInvoicePayment.saleInvoice">
+                        <a [routerLink]="['/sale-invoice', saleInvoicePayment.saleInvoice?.id, 'view']">{{saleInvoicePayment.saleInvoice?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span>Payment Method</span></dt>
+                <dd>
+                    <div *ngIf="saleInvoicePayment.paymentMethod">
+                        <a [routerLink]="['/payment-method', saleInvoicePayment.paymentMethod?.id, 'view']">{{saleInvoicePayment.paymentMethod?.code}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/sale-invoice-payment', saleInvoicePayment.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,70 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-purchase-invoice-item-heading">Create or edit a Purchase Invoice Item</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!purchaseInvoiceItem.id">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="purchaseInvoiceItem.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_cost">Cost</label>
+                    <input type="number" class="form-control" name="cost" id="field_cost"
+                        [(ngModel)]="purchaseInvoiceItem.cost" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_discount">Discount</label>
+                    <input type="number" class="form-control" name="discount" id="field_discount"
+                        [(ngModel)]="purchaseInvoiceItem.discount" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_sellingPrice">Selling Price</label>
+                    <input type="number" class="form-control" name="sellingPrice" id="field_sellingPrice"
+                        [(ngModel)]="purchaseInvoiceItem.sellingPrice" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_expiaryDate">Expiary Date</label>
+                    <div class="d-flex">
+                        <input id="field_expiaryDate" type="datetime-local" class="form-control" name="expiaryDate" [(ngModel)]="expiaryDate"
+                        />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_quantity">Quantity</label>
+                    <input type="number" class="form-control" name="quantity" id="field_quantity"
+                        [(ngModel)]="purchaseInvoiceItem.quantity" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_serial">Serial</label>
+                    <input type="text" class="form-control" name="serial" id="field_serial"
+                        [(ngModel)]="purchaseInvoiceItem.serial" />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_purchaseInvoice">Purchase Invoice</label>
+                    <select class="form-control" id="field_purchaseInvoice" name="purchaseInvoice" [(ngModel)]="purchaseInvoiceItem.purchaseInvoice" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="purchaseInvoiceOption.id === purchaseInvoiceItem.purchaseInvoice?.id ? purchaseInvoiceItem.purchaseInvoice : purchaseInvoiceOption" *ngFor="let purchaseInvoiceOption of purchaseinvoices; trackBy: trackPurchaseInvoiceById">{{purchaseInvoiceOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_item">Item</label>
+                    <select class="form-control" id="field_item" name="item" [(ngModel)]="purchaseInvoiceItem.item" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="itemOption.id === purchaseInvoiceItem.item?.id ? purchaseInvoiceItem.item : itemOption" *ngFor="let itemOption of items; trackBy: trackItemById">{{itemOption.code}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

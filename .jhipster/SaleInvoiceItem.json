@@ -1,0 +1,40 @@
+{
+    "name": "SaleInvoiceItem",
+    "fields": [
+        {
+            "fieldName": "amount",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "discount",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "quantity",
+            "fieldType": "Double"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "saleInvoice",
+            "otherEntityName": "saleInvoice",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "purchaseInvoiceItem",
+            "otherEntityName": "purchaseInvoiceItem",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20180719065356",
+    "entityTableName": "sale_invoice_item",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

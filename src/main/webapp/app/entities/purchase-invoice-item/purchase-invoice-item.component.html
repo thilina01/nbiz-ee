@@ -1,0 +1,84 @@
+<div>
+    <h2 id="page-heading">
+        <span>Purchase Invoice Items</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-purchase-invoice-item" [routerLink]="['/purchase-invoice-item/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span >
+            Create new Purchase Invoice Item
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive" *ngIf="purchaseInvoiceItems">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th jhiSortBy="id"><span>ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="cost"><span>Cost</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="discount"><span>Discount</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="sellingPrice"><span>Selling Price</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="expiaryDate"><span>Expiary Date</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="quantity"><span>Quantity</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="serial"><span>Serial</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="purchaseInvoice.id"><span>Purchase Invoice</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="item.code"><span>Item</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let purchaseInvoiceItem of purchaseInvoiceItems ;trackBy: trackId">
+                <td><a [routerLink]="['/purchase-invoice-item', purchaseInvoiceItem.id, 'view' ]">{{purchaseInvoiceItem.id}}</a></td>
+                <td>{{purchaseInvoiceItem.cost}}</td>
+                <td>{{purchaseInvoiceItem.discount}}</td>
+                <td>{{purchaseInvoiceItem.sellingPrice}}</td>
+                <td>{{purchaseInvoiceItem.expiaryDate | date:'medium'}}</td>
+                <td>{{purchaseInvoiceItem.quantity}}</td>
+                <td>{{purchaseInvoiceItem.serial}}</td>
+                <td>
+                    <div *ngIf="purchaseInvoiceItem.purchaseInvoice">
+                        <a [routerLink]="['../purchase-invoice', purchaseInvoiceItem.purchaseInvoice?.id, 'view' ]" >{{purchaseInvoiceItem.purchaseInvoice?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="purchaseInvoiceItem.item">
+                        <a [routerLink]="['../item', purchaseInvoiceItem.item?.id, 'view' ]" >{{purchaseInvoiceItem.item?.code}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/purchase-invoice-item', purchaseInvoiceItem.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/purchase-invoice-item', purchaseInvoiceItem.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'purchase-invoice-item/'+ purchaseInvoiceItem.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div *ngIf="purchaseInvoiceItems && purchaseInvoiceItems.length">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="queryCount" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+        </div>
+    </div>
+</div>

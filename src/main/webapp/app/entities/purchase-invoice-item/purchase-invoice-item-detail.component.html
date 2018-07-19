@@ -1,0 +1,59 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="purchaseInvoiceItem">
+            <h2><span>Purchase Invoice Item</span> {{purchaseInvoiceItem.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Cost</span></dt>
+                <dd>
+                    <span>{{purchaseInvoiceItem.cost}}</span>
+                </dd>
+                <dt><span>Discount</span></dt>
+                <dd>
+                    <span>{{purchaseInvoiceItem.discount}}</span>
+                </dd>
+                <dt><span>Selling Price</span></dt>
+                <dd>
+                    <span>{{purchaseInvoiceItem.sellingPrice}}</span>
+                </dd>
+                <dt><span>Expiary Date</span></dt>
+                <dd>
+                    <span>{{purchaseInvoiceItem.expiaryDate}}</span>
+                </dd>
+                <dt><span>Quantity</span></dt>
+                <dd>
+                    <span>{{purchaseInvoiceItem.quantity}}</span>
+                </dd>
+                <dt><span>Serial</span></dt>
+                <dd>
+                    <span>{{purchaseInvoiceItem.serial}}</span>
+                </dd>
+                <dt><span>Purchase Invoice</span></dt>
+                <dd>
+                    <div *ngIf="purchaseInvoiceItem.purchaseInvoice">
+                        <a [routerLink]="['/purchase-invoice', purchaseInvoiceItem.purchaseInvoice?.id, 'view']">{{purchaseInvoiceItem.purchaseInvoice?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span>Item</span></dt>
+                <dd>
+                    <div *ngIf="purchaseInvoiceItem.item">
+                        <a [routerLink]="['/item', purchaseInvoiceItem.item?.id, 'view']">{{purchaseInvoiceItem.item?.code}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/purchase-invoice-item', purchaseInvoiceItem.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

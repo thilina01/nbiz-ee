@@ -1,0 +1,47 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="saleInvoiceItem">
+            <h2><span>Sale Invoice Item</span> {{saleInvoiceItem.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Amount</span></dt>
+                <dd>
+                    <span>{{saleInvoiceItem.amount}}</span>
+                </dd>
+                <dt><span>Discount</span></dt>
+                <dd>
+                    <span>{{saleInvoiceItem.discount}}</span>
+                </dd>
+                <dt><span>Quantity</span></dt>
+                <dd>
+                    <span>{{saleInvoiceItem.quantity}}</span>
+                </dd>
+                <dt><span>Sale Invoice</span></dt>
+                <dd>
+                    <div *ngIf="saleInvoiceItem.saleInvoice">
+                        <a [routerLink]="['/sale-invoice', saleInvoiceItem.saleInvoice?.id, 'view']">{{saleInvoiceItem.saleInvoice?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span>Purchase Invoice Item</span></dt>
+                <dd>
+                    <div *ngIf="saleInvoiceItem.purchaseInvoiceItem">
+                        <a [routerLink]="['/purchase-invoice-item', saleInvoiceItem.purchaseInvoiceItem?.id, 'view']">{{saleInvoiceItem.purchaseInvoiceItem?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/sale-invoice-item', saleInvoiceItem.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>
