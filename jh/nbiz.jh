@@ -1,0 +1,111 @@
+#title: nbiz
+
+entity Brand{
+	code String,
+    name String
+}
+
+entity Category{
+	code String,
+    name String
+}
+
+entity Item{
+	code String,
+    name String,
+    model String,
+    description String,
+    reOrderLevel Double,
+    defaultPrice Double
+}
+
+entity Supplier{
+	code String,
+    name String
+}
+
+entity PurchaseInvoice{
+	invoiceDate Instant,
+    amount	Double,
+    discount Double
+}
+
+entity PurchaseInvoiceItem{
+    cost Double,
+    discount Double,
+    sellingPrice Double,
+	expiaryDate Instant,
+    quantity Double,
+	serial String
+}
+
+entity Customer{
+	code String,
+    name String
+}
+
+entity SalesPerson{
+	code String,
+    name String
+}
+
+entity SaleInvoice{
+	invoiceDate Instant,
+    amount	Double,
+    paidAmount	Double,
+    balanceAmount	Double,
+    discount Double
+}
+
+entity SaleInvoiceItem{
+    amount	Double,
+    discount Double,
+    quantity Double
+}
+
+entity Quotation{
+	quotationDate Instant,
+    amount	Double,
+    discount Double
+}
+
+entity QuotationItem{
+    amount	Double,
+    discount Double,
+    quantity Double
+}
+
+entity PaymentMethod{
+	code String,
+    name String
+}
+
+entity SaleInvoicePayment{
+	paymentDate Instant,
+	amount Double
+}
+
+relationship OneToMany {
+	Brand to Item{brand(name)}
+	Category to Item{category(name)}
+	Supplier to PurchaseInvoice{supplier(name)}
+	PurchaseInvoice to PurchaseInvoiceItem
+	Item to PurchaseInvoiceItem
+       
+	Customer to SaleInvoice{customer(name)}
+	SaleInvoice to SaleInvoiceItem
+    PurchaseInvoiceItem to SaleInvoiceItem    
+	SalesPerson to SaleInvoice{salesPerson(name)}
+        
+	SaleInvoice to SaleInvoicePayment    
+	PaymentMethod to SaleInvoicePayment
+    
+	Customer to Quotation{customer(name)}
+	Quotation to QuotationItem
+    PurchaseInvoiceItem to QuotationItem
+}
+
+paginate all with pagination
+service PurchaseInvoice, SaleInvoice, Quotation with serviceClass
+#direction: down 
+
