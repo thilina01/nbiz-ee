@@ -90,19 +90,19 @@ relationship OneToMany {
 	Category to Item{category(name)}
 	Supplier to PurchaseInvoice{supplier(name)}
 	PurchaseInvoice to PurchaseInvoiceItem
-	Item to PurchaseInvoiceItem
+	Item to PurchaseInvoiceItem{item(code)}
        
 	Customer to SaleInvoice{customer(name)}
-	SaleInvoice to SaleInvoiceItem
-    PurchaseInvoiceItem to SaleInvoiceItem    
+	SaleInvoice to SaleInvoiceItem{saleInvoice}
+    PurchaseInvoiceItem to SaleInvoiceItem{purchaseInvoiceItem}
 	SalesPerson to SaleInvoice{salesPerson(name)}
         
 	SaleInvoice to SaleInvoicePayment    
-	PaymentMethod to SaleInvoicePayment
+	PaymentMethod to SaleInvoicePayment{paymentMethod(code)}
     
 	Customer to Quotation{customer(name)}
 	Quotation to QuotationItem
-    PurchaseInvoiceItem to QuotationItem
+    PurchaseInvoiceItem to QuotationItem{purchaseInvoiceItem}
 }
 
 paginate all with pagination
