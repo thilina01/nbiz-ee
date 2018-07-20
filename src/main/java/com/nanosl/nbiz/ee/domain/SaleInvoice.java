@@ -45,11 +45,11 @@ public class SaleInvoice implements Serializable {
     @Column(name = "discount")
     private Double discount;
 
-    @OneToMany(mappedBy = "saleInvoice")
+    @OneToMany(cascade = {CascadeType.ALL}, mappedBy = "saleInvoice")
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<SaleInvoiceItem> saleInvoiceItems = new HashSet<>();
 
-    @OneToMany(mappedBy = "saleInvoice")
+    @OneToMany(cascade = {CascadeType.ALL}, mappedBy = "saleInvoice")
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<SaleInvoicePayment> saleInvoicePayments = new HashSet<>();
 

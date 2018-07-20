@@ -1,6 +1,8 @@
 package com.nanosl.nbiz.ee.service;
 
 import com.nanosl.nbiz.ee.domain.SaleInvoice;
+import com.nanosl.nbiz.ee.domain.SaleInvoiceItem;
+import com.nanosl.nbiz.ee.domain.SaleInvoicePayment;
 import com.nanosl.nbiz.ee.repository.SaleInvoiceRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 
 import java.util.Optional;
+import java.util.Set;
 /**
  * Service Implementation for managing SaleInvoice.
  */
@@ -34,7 +37,19 @@ public class SaleInvoiceService {
      * @return the persisted entity
      */
     public SaleInvoice save(SaleInvoice saleInvoice) {
-        log.debug("Request to save SaleInvoice : {}", saleInvoice);        return saleInvoiceRepository.save(saleInvoice);
+        log.debug("Request to save SaleInvoice : {}", saleInvoice);    
+
+        Set <SaleInvoiceItem> saleInvoiceItems= saleInvoice.getSaleInvoiceItems();
+        for (SaleInvoiceItem saleInvoiceItem : saleInvoiceItems) {
+            saleInvoiceItem.setSaleInvoice(saleInvoice);
+        }   
+
+        Set <SaleInvoicePayment> saleInvoicePayments= saleInvoice.getSaleInvoicePayments();
+        for (SaleInvoicePayment saleInvoicePayment : saleInvoicePayments) {
+            saleInvoicePayment.setSaleInvoice(saleInvoice);
+        }
+        
+        return saleInvoiceRepository.save(saleInvoice);
     }
 
     /**
