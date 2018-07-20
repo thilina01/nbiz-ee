@@ -41,7 +41,7 @@ public class PurchaseInvoice implements Serializable {
 
     @OneToMany(mappedBy = "purchaseInvoice")
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    private Set<PurchaseInvoiceItem> purchaseInvoices = new HashSet<>();
+    private Set<PurchaseInvoiceItem> purchaseInvoiceItems = new HashSet<>();
 
     @ManyToOne
     @JsonIgnoreProperties("purchaseInvoices")
@@ -95,29 +95,29 @@ public class PurchaseInvoice implements Serializable {
         this.discount = discount;
     }
 
-    public Set<PurchaseInvoiceItem> getPurchaseInvoices() {
-        return purchaseInvoices;
+    public Set<PurchaseInvoiceItem> getPurchaseInvoiceItems() {
+        return purchaseInvoiceItems;
     }
 
-    public PurchaseInvoice purchaseInvoices(Set<PurchaseInvoiceItem> purchaseInvoiceItems) {
-        this.purchaseInvoices = purchaseInvoiceItems;
+    public PurchaseInvoice purchaseInvoiceItems(Set<PurchaseInvoiceItem> purchaseInvoiceItems) {
+        this.purchaseInvoiceItems = purchaseInvoiceItems;
         return this;
     }
 
-    public PurchaseInvoice addPurchaseInvoice(PurchaseInvoiceItem purchaseInvoiceItem) {
-        this.purchaseInvoices.add(purchaseInvoiceItem);
+    public PurchaseInvoice addPurchaseInvoiceItem(PurchaseInvoiceItem purchaseInvoiceItem) {
+        this.purchaseInvoiceItems.add(purchaseInvoiceItem);
         purchaseInvoiceItem.setPurchaseInvoice(this);
         return this;
     }
 
-    public PurchaseInvoice removePurchaseInvoice(PurchaseInvoiceItem purchaseInvoiceItem) {
-        this.purchaseInvoices.remove(purchaseInvoiceItem);
+    public PurchaseInvoice removePurchaseInvoiceItem(PurchaseInvoiceItem purchaseInvoiceItem) {
+        this.purchaseInvoiceItems.remove(purchaseInvoiceItem);
         purchaseInvoiceItem.setPurchaseInvoice(null);
         return this;
     }
 
-    public void setPurchaseInvoices(Set<PurchaseInvoiceItem> purchaseInvoiceItems) {
-        this.purchaseInvoices = purchaseInvoiceItems;
+    public void setPurchaseInvoiceItems(Set<PurchaseInvoiceItem> purchaseInvoiceItems) {
+        this.purchaseInvoiceItems = purchaseInvoiceItems;
     }
 
     public Supplier getSupplier() {

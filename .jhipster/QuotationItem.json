@@ -22,9 +22,9 @@
     ],
     "relationships": [
         {
+            "relationshipType": "many-to-one",
             "relationshipName": "quotation",
             "otherEntityName": "quotation",
-            "relationshipType": "many-to-one",
             "otherEntityField": "id"
         },
         {

@@ -23,7 +23,7 @@
     "relationships": [
         {
             "relationshipType": "one-to-many",
-            "relationshipName": "quotation",
+            "relationshipName": "quotationItem",
             "otherEntityName": "quotationItem",
             "otherEntityRelationshipName": "quotation"
         },

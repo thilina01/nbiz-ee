@@ -37,12 +37,6 @@
     ],
     "relationships": [
         {
-            "relationshipName": "purchaseInvoice",
-            "otherEntityName": "purchaseInvoice",
-            "relationshipType": "many-to-one",
-            "otherEntityField": "id"
-        },
-        {
             "relationshipType": "one-to-many",
             "relationshipName": "saleInvoiceItem",
             "otherEntityName": "saleInvoiceItem",
@@ -53,6 +47,12 @@
             "relationshipName": "quotationItem",
             "otherEntityName": "quotationItem",
             "otherEntityRelationshipName": "purchaseInvoiceItem"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "purchaseInvoice",
+            "otherEntityName": "purchaseInvoice",
+            "otherEntityField": "id"
         },
         {
             "relationshipType": "many-to-one",

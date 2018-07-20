@@ -23,7 +23,7 @@
     "relationships": [
         {
             "relationshipType": "one-to-many",
-            "relationshipName": "purchaseInvoice",
+            "relationshipName": "purchaseInvoiceItem",
             "otherEntityName": "purchaseInvoiceItem",
             "otherEntityRelationshipName": "purchaseInvoice"
         },

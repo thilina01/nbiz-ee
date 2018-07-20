@@ -7,7 +7,7 @@ export interface IQuotation {
     quotationDate?: Moment;
     amount?: number;
     discount?: number;
-    quotations?: IQuotationItem[];
+    quotationItems?: IQuotationItem[];
     customer?: ICustomer;
 }
 
@@ -17,7 +17,7 @@ export class Quotation implements IQuotation {
         public quotationDate?: Moment,
         public amount?: number,
         public discount?: number,
-        public quotations?: IQuotationItem[],
+        public quotationItems?: IQuotationItem[],
         public customer?: ICustomer
     ) {}
 }

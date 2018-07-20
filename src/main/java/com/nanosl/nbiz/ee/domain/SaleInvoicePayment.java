@@ -34,7 +34,7 @@ public class SaleInvoicePayment implements Serializable {
     private Double amount;
 
     @ManyToOne
-    @JsonIgnoreProperties("saleInvoices")
+    @JsonIgnoreProperties("saleInvoicePayments")
     private SaleInvoice saleInvoice;
 
     @ManyToOne

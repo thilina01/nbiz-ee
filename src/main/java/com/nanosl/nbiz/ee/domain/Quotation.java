@@ -41,7 +41,7 @@ public class Quotation implements Serializable {
 
     @OneToMany(mappedBy = "quotation")
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    private Set<QuotationItem> quotations = new HashSet<>();
+    private Set<QuotationItem> quotationItems = new HashSet<>();
 
     @ManyToOne
     @JsonIgnoreProperties("quotations")
@@ -95,29 +95,29 @@ public class Quotation implements Serializable {
         this.discount = discount;
     }
 
-    public Set<QuotationItem> getQuotations() {
-        return quotations;
+    public Set<QuotationItem> getQuotationItems() {
+        return quotationItems;
     }
 
-    public Quotation quotations(Set<QuotationItem> quotationItems) {
-        this.quotations = quotationItems;
+    public Quotation quotationItems(Set<QuotationItem> quotationItems) {
+        this.quotationItems = quotationItems;
         return this;
     }
 
-    public Quotation addQuotation(QuotationItem quotationItem) {
-        this.quotations.add(quotationItem);
+    public Quotation addQuotationItem(QuotationItem quotationItem) {
+        this.quotationItems.add(quotationItem);
         quotationItem.setQuotation(this);
         return this;
     }
 
-    public Quotation removeQuotation(QuotationItem quotationItem) {
-        this.quotations.remove(quotationItem);
+    public Quotation removeQuotationItem(QuotationItem quotationItem) {
+        this.quotationItems.remove(quotationItem);
         quotationItem.setQuotation(null);
         return this;
     }
 
-    public void setQuotations(Set<QuotationItem> quotationItems) {
-        this.quotations = quotationItems;
+    public void setQuotationItems(Set<QuotationItem> quotationItems) {
+        this.quotationItems = quotationItems;
     }
 
     public Customer getCustomer() {

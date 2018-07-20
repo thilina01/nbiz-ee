@@ -37,7 +37,7 @@
         },
         {
             "relationshipType": "one-to-many",
-            "relationshipName": "saleInvoice",
+            "relationshipName": "saleInvoicePayment",
             "otherEntityName": "saleInvoicePayment",
             "otherEntityRelationshipName": "saleInvoice"
         },

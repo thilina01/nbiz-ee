@@ -89,7 +89,7 @@ relationship OneToMany {
 	Brand to Item{brand(name)}
 	Category to Item{category(name)}
 	Supplier to PurchaseInvoice{supplier(name)}
-	PurchaseInvoice to PurchaseInvoiceItem
+	PurchaseInvoice to PurchaseInvoiceItem{purchaseInvoice}
 	Item to PurchaseInvoiceItem{item(code)}
        
 	Customer to SaleInvoice{customer(name)}
@@ -97,11 +97,11 @@ relationship OneToMany {
     PurchaseInvoiceItem to SaleInvoiceItem{purchaseInvoiceItem}
 	SalesPerson to SaleInvoice{salesPerson(name)}
         
-	SaleInvoice to SaleInvoicePayment    
+	SaleInvoice to SaleInvoicePayment{saleInvoice}
 	PaymentMethod to SaleInvoicePayment{paymentMethod(code)}
     
 	Customer to Quotation{customer(name)}
-	Quotation to QuotationItem
+	Quotation to QuotationItem{quotation}
     PurchaseInvoiceItem to QuotationItem{purchaseInvoiceItem}
 }
 

@@ -66,6 +66,9 @@ public class CacheConfiguration {
             cm.createCache(com.nanosl.nbiz.ee.domain.PaymentMethod.class.getName(), jcacheConfiguration);
             cm.createCache(com.nanosl.nbiz.ee.domain.PaymentMethod.class.getName() + ".saleInvoicePayments", jcacheConfiguration);
             cm.createCache(com.nanosl.nbiz.ee.domain.SaleInvoicePayment.class.getName(), jcacheConfiguration);
+            cm.createCache(com.nanosl.nbiz.ee.domain.PurchaseInvoice.class.getName() + ".purchaseInvoiceItems", jcacheConfiguration);
+            cm.createCache(com.nanosl.nbiz.ee.domain.SaleInvoice.class.getName() + ".saleInvoicePayments", jcacheConfiguration);
+            cm.createCache(com.nanosl.nbiz.ee.domain.Quotation.class.getName() + ".quotationItems", jcacheConfiguration);
             // jhipster-needle-ehcache-add-entry
         };
     }

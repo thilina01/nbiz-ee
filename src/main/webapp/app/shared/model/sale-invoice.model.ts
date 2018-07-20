@@ -12,7 +12,7 @@ export interface ISaleInvoice {
     balanceAmount?: number;
     discount?: number;
     saleInvoiceItems?: ISaleInvoiceItem[];
-    saleInvoices?: ISaleInvoicePayment[];
+    saleInvoicePayments?: ISaleInvoicePayment[];
     customer?: ICustomer;
     salesPerson?: ISalesPerson;
 }
@@ -26,7 +26,7 @@ export class SaleInvoice implements ISaleInvoice {
         public balanceAmount?: number,
         public discount?: number,
         public saleInvoiceItems?: ISaleInvoiceItem[],
-        public saleInvoices?: ISaleInvoicePayment[],
+        public saleInvoicePayments?: ISaleInvoicePayment[],
         public customer?: ICustomer,
         public salesPerson?: ISalesPerson
     ) {}

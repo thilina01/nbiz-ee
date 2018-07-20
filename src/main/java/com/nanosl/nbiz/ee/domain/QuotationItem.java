@@ -36,7 +36,7 @@ public class QuotationItem implements Serializable {
     private Double quantity;
 
     @ManyToOne
-    @JsonIgnoreProperties("quotations")
+    @JsonIgnoreProperties("quotationItems")
     private Quotation quotation;
 
     @ManyToOne

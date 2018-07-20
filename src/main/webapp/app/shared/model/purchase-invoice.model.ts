@@ -7,7 +7,7 @@ export interface IPurchaseInvoice {
     invoiceDate?: Moment;
     amount?: number;
     discount?: number;
-    purchaseInvoices?: IPurchaseInvoiceItem[];
+    purchaseInvoiceItems?: IPurchaseInvoiceItem[];
     supplier?: ISupplier;
 }
 
@@ -17,7 +17,7 @@ export class PurchaseInvoice implements IPurchaseInvoice {
         public invoiceDate?: Moment,
         public amount?: number,
         public discount?: number,
-        public purchaseInvoices?: IPurchaseInvoiceItem[],
+        public purchaseInvoiceItems?: IPurchaseInvoiceItem[],
         public supplier?: ISupplier
     ) {}
 }

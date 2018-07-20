@@ -51,7 +51,7 @@ public class SaleInvoice implements Serializable {
 
     @OneToMany(mappedBy = "saleInvoice")
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    private Set<SaleInvoicePayment> saleInvoices = new HashSet<>();
+    private Set<SaleInvoicePayment> saleInvoicePayments = new HashSet<>();
 
     @ManyToOne
     @JsonIgnoreProperties("saleInvoices")
@@ -160,29 +160,29 @@ public class SaleInvoice implements Serializable {
         this.saleInvoiceItems = saleInvoiceItems;
     }
 
-    public Set<SaleInvoicePayment> getSaleInvoices() {
-        return saleInvoices;
+    public Set<SaleInvoicePayment> getSaleInvoicePayments() {
+        return saleInvoicePayments;
     }
 
-    public SaleInvoice saleInvoices(Set<SaleInvoicePayment> saleInvoicePayments) {
-        this.saleInvoices = saleInvoicePayments;
+    public SaleInvoice saleInvoicePayments(Set<SaleInvoicePayment> saleInvoicePayments) {
+        this.saleInvoicePayments = saleInvoicePayments;
         return this;
     }
 
-    public SaleInvoice addSaleInvoice(SaleInvoicePayment saleInvoicePayment) {
-        this.saleInvoices.add(saleInvoicePayment);
+    public SaleInvoice addSaleInvoicePayment(SaleInvoicePayment saleInvoicePayment) {
+        this.saleInvoicePayments.add(saleInvoicePayment);
         saleInvoicePayment.setSaleInvoice(this);
         return this;
     }
 
-    public SaleInvoice removeSaleInvoice(SaleInvoicePayment saleInvoicePayment) {
-        this.saleInvoices.remove(saleInvoicePayment);
+    public SaleInvoice removeSaleInvoicePayment(SaleInvoicePayment saleInvoicePayment) {
+        this.saleInvoicePayments.remove(saleInvoicePayment);
         saleInvoicePayment.setSaleInvoice(null);
         return this;
     }
 
-    public void setSaleInvoices(Set<SaleInvoicePayment> saleInvoicePayments) {
-        this.saleInvoices = saleInvoicePayments;
+    public void setSaleInvoicePayments(Set<SaleInvoicePayment> saleInvoicePayments) {
+        this.saleInvoicePayments = saleInvoicePayments;
     }
 
     public Customer getCustomer() {

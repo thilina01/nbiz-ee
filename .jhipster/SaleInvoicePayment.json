@@ -18,9 +18,9 @@
     ],
     "relationships": [
         {
+            "relationshipType": "many-to-one",
             "relationshipName": "saleInvoice",
             "otherEntityName": "saleInvoice",
-            "relationshipType": "many-to-one",
             "otherEntityField": "id"
         },
         {

@@ -49,10 +49,6 @@ public class PurchaseInvoiceItem implements Serializable {
     @Column(name = "serial")
     private String serial;
 
-    @ManyToOne
-    @JsonIgnoreProperties("purchaseInvoices")
-    private PurchaseInvoice purchaseInvoice;
-
     @OneToMany(mappedBy = "purchaseInvoiceItem")
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<SaleInvoiceItem> saleInvoiceItems = new HashSet<>();
@@ -60,6 +56,10 @@ public class PurchaseInvoiceItem implements Serializable {
     @OneToMany(mappedBy = "purchaseInvoiceItem")
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<QuotationItem> quotationItems = new HashSet<>();
+
+    @ManyToOne
+    @JsonIgnoreProperties("purchaseInvoiceItems")
+    private PurchaseInvoice purchaseInvoice;
 
     @ManyToOne
     @JsonIgnoreProperties("purchaseInvoiceItems")
@@ -152,19 +152,6 @@ public class PurchaseInvoiceItem implements Serializable {
         this.serial = serial;
     }
 
-    public PurchaseInvoice getPurchaseInvoice() {
-        return purchaseInvoice;
-    }
-
-    public PurchaseInvoiceItem purchaseInvoice(PurchaseInvoice purchaseInvoice) {
-        this.purchaseInvoice = purchaseInvoice;
-        return this;
-    }
-
-    public void setPurchaseInvoice(PurchaseInvoice purchaseInvoice) {
-        this.purchaseInvoice = purchaseInvoice;
-    }
-
     public Set<SaleInvoiceItem> getSaleInvoiceItems() {
         return saleInvoiceItems;
     }
@@ -213,6 +200,19 @@ public class PurchaseInvoiceItem implements Serializable {
 
     public void setQuotationItems(Set<QuotationItem> quotationItems) {
         this.quotationItems = quotationItems;
+    }
+
+    public PurchaseInvoice getPurchaseInvoice() {
+        return purchaseInvoice;
+    }
+
+    public PurchaseInvoiceItem purchaseInvoice(PurchaseInvoice purchaseInvoice) {
+        this.purchaseInvoice = purchaseInvoice;
+        return this;
+    }
+
+    public void setPurchaseInvoice(PurchaseInvoice purchaseInvoice) {
+        this.purchaseInvoice = purchaseInvoice;
     }
 
     public Item getItem() {
