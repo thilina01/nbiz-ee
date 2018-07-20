@@ -87,7 +87,7 @@ export class SaleInvoiceUpdateComponent implements OnInit {
     }
 
     save() {
-        if (this.saleInvoice.saleInvoiceItems.length > 0) {
+        if (this.saleInvoice.saleInvoiceItems !== undefined && this.saleInvoice.saleInvoiceItems.length > 0) {
             this.isSaving = true;
             this.saleInvoice.invoiceDate = moment(new Date(), DATE_TIME_FORMAT); // this.invoiceDate
             if (this.saleInvoice.id !== undefined) {

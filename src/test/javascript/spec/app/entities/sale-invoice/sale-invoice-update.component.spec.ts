@@ -7,6 +7,7 @@ import { NBizEeTestModule } from '../../../test.module';
 import { SaleInvoiceUpdateComponent } from 'app/entities/sale-invoice/sale-invoice-update.component';
 import { SaleInvoiceService } from 'app/entities/sale-invoice/sale-invoice.service';
 import { SaleInvoice } from 'app/shared/model/sale-invoice.model';
+import { SaleInvoiceItem } from 'app/shared/model/sale-invoice-item.model';
 
 describe('Component Tests', () => {
     describe('SaleInvoice Management Update Component', () => {
@@ -33,6 +34,7 @@ describe('Component Tests', () => {
                 fakeAsync(() => {
                     // GIVEN
                     const entity = new SaleInvoice(123);
+                    entity.saleInvoiceItems = [ new SaleInvoiceItem() ];
                     spyOn(service, 'update').and.returnValue(of(new HttpResponse({ body: entity })));
                     comp.saleInvoice = entity;
                     // WHEN
@@ -50,6 +52,7 @@ describe('Component Tests', () => {
                 fakeAsync(() => {
                     // GIVEN
                     const entity = new SaleInvoice();
+                    entity.saleInvoiceItems = [ new SaleInvoiceItem() ];
                     spyOn(service, 'create').and.returnValue(of(new HttpResponse({ body: entity })));
                     comp.saleInvoice = entity;
                     // WHEN
