@@ -136,7 +136,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let saleInvoiceItem of saleInvoice.saleInvoiceItems ;trackBy: trackId; let i = index">
+                        <tr *ngFor="let saleInvoiceItem of saleInvoice.saleInvoiceItems; let i = index">
                             <td>
                                 <a [routerLink]="['/sale-invoice-item', saleInvoiceItem.id, 'view' ]">{{saleInvoiceItem.id}}</a>
                             </td>

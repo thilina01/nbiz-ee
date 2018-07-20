@@ -22,7 +22,7 @@ import { IPurchaseInvoiceItem } from 'app/shared/model/purchase-invoice-item.mod
 })
 export class SaleInvoiceUpdateComponent implements OnInit {
     private _saleInvoice: ISaleInvoice;
-    private saleInvoiceItem: ISaleInvoiceItem;
+    saleInvoiceItem: ISaleInvoiceItem;
     isSaving: boolean;
 
     customers: ICustomer[];
@@ -39,7 +39,7 @@ export class SaleInvoiceUpdateComponent implements OnInit {
         private salesPersonService: SalesPersonService,
         private purchaseInvoiceItemService: PurchaseInvoiceItemService,
         private activatedRoute: ActivatedRoute
-    ) { }
+    ) {}
 
     ngOnInit() {
         this.saleInvoiceItem = new SaleInvoiceItem();
@@ -123,6 +123,11 @@ export class SaleInvoiceUpdateComponent implements OnInit {
     trackSalesPersonById(index: number, item: ISalesPerson) {
         return item.id;
     }
+
+    trackPurchaseInvoiceItemById(index: number, item: IPurchaseInvoiceItem) {
+        return item.id;
+    }
+
     get saleInvoice() {
         return this._saleInvoice;
     }
